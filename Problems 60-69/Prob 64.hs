@@ -16,3 +16,6 @@ solving (Branch x Empty Empty) accleft level = Branch (x, (accleft + 1, level)) 
 solving (Branch x left Empty) accleft level = Branch (x, (accleft + countNode left + 1, level)) (solving left accleft $ level + 1) Empty 
 solving (Branch x Empty right) accleft level = Branch (x, (accleft + 1, level)) Empty (solving right (accleft + 1) $ level + 1)
 solving (Branch x left right) accleft level = Branch (x, (accleft + countNode left + 1, level)) (solving left accleft $ level + 1) (solving right (accleft + countNode left + 1) $ level + 1)
+
+layout :: Tree a -> Tree (a, (Int, Int))
+layout x = solving x 0 1

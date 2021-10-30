@@ -17,11 +17,14 @@ listnx charc vs acc
     where (x, y) = head vs
           xs = tail vs
 
-depthfirst :: ([Node], [Edge]) -> Int -> [Int] -> Stack -> [Int]
-depthfirst (node, edge) nw take stack
+solve :: ([Node], [Edge]) -> Int -> [Int] -> Stack -> [Int]
+solve (node, edge) nw take stack
     | null remain && null stack = take
-    | null remain = if null cl then take else depthfirst (node, edge) (head cl) take cl
-    | otherwise = depthfirst (node, edge) (head remain) (take ++ [head remain]) (head remain : stack)
+    | null remain = if null cl then take else solve (node, edge) (head cl) take cl
+    | otherwise = solve (node, edge) (head remain) (take ++ [head remain]) (head remain : stack)
     where nx point = dropWhile (`elem` take) $ listnx point edge []
           remain = nx nw
           cl = dropWhile (null . nx) stack
+
+depthfirst :: ([Node], [Edge]) -> Node -> [Node]
+depthfirst (node, edge) st = solve (node, edge) st [st] [st]

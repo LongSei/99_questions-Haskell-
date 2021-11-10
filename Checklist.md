@@ -13,3 +13,5 @@
     <li> 90 to 94: Miscellaneous problems</li>
     <li> 95 to 99: Miscellaneous problems, continued</li>
   </ul>
+  
+<a href="https://wiki.haskell.org/H-99:_Ninety-Nine_Haskell_Problems">Link redirect to problems page </a>
